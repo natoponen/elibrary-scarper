@@ -1,0 +1,45 @@
+logging:
+  file:
+    name: application.log
+  level:
+    ru.rudn.ntoponen.elibraryscarper: debug
+
+webdriver:
+  chrome:
+    driver: /bin/chromedriver.exe
+
+spring:
+  jpa:
+    open-in-view: false
+    hibernate.ddl-auto: validate
+    properties:
+      hibernate:
+        order_inserts: true
+        order_updates: true
+        batch_versioned_data: true
+  datasource:
+    url: jdbc:postgresql://localhost:12200/elibrary_scarper_db
+    username: user
+    password: password
+    hikari:
+      connectionTimeout: 30000
+      idleTimeout: 60000
+      maxLifetime: 570000
+    driver-class-name: org.postgresql.Driver
+  quartz:
+    job-store-type: jdbc
+    auto-startup: true
+    wait-for-jobs-to-complete-on-shutdown: true
+    scheduler-name: commission-scheduler
+    jdbc:
+      initialize-schema: always
+    properties:
+      org.quartz.jobStore.class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+      org.quartz.jobStore.isClustered: true
+      org.quartz.jobStore.clusterCheckinInterval: 2000
+      org.quartz.scheduler.instanceId: AUTO
+
+elibraryScarper:
+  settings:
+    mainPageUrl: https://elibrary.ru/defaultx.asp?

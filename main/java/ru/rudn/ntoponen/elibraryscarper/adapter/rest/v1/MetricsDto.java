@@ -2,6 +2,8 @@ package ru.rudn.ntoponen.elibraryscarper.adapter.rest.v1;
 
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 public class MetricsDto {
     /**
@@ -11,9 +13,13 @@ public class MetricsDto {
     /**
      * Число найденных публикаций
      */
-    private int publicationsNum;
+    private Long publicationsNum;
     /**
      * Число цитирований статей, в написании которых участвовал автор
      */
-    private long citationsNum;
+    private Long citationsNum;
+    /**
+     * Дата, на которую был выполнен расчет
+     */
+    private LocalDate calculationDate;
 }
